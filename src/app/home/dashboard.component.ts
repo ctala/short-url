@@ -99,6 +99,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   	}
   }
 
+  
+
   public initForm(){
     this.form = this._fb.group({
       usuario: [null, Validators.required],
@@ -168,6 +170,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.initFormRegistrar()
       this.isLoading = false
       this.toaster.success(`Se ha registrado correctamente`,'Éxito!')
+      $('#modal_registrar').modal('hide')
       
       setTimeout(() => {
 
