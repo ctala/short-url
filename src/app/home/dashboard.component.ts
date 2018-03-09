@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Subject } from 'rxjs/Subject'
 import { Observable } from 'rxjs/Rx'
 import { ToastsManager } from 'ng2-toastr/ng2-toastr'
+import { Router } from '@angular/router'
 
 import { UrlService } from '../services/url.service'
 import { UserService } from '../services/user.service'
@@ -32,7 +33,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
               private _ele : ElementRef, 
               vcr: ViewContainerRef, 
               private _fb: FormBuilder,
-              private _userService: UserService) 
+              private _userService: UserService,
+              private _router: Router) 
   {
     this.toaster.setRootViewContainerRef(vcr)
     this.initForm()
@@ -46,6 +48,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   public transFormUrl()
   {
+    // función para transformar las url 
   	const url = this._ele.nativeElement.querySelector('#url_input').value
 
   	if(url)
@@ -55,10 +58,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
       if(this.identity)
       {
+        // si existe la sesion
         this._urlService.convertUrlUser(object).subscribe(res => {
 
-            this.toaster.success(`su url es ${res.url}`, 'Éxito!');
+            this.toaster.success(`Su url ha sido transformada`, 'Éxito!');
             this.isLoading = false
+            this._ele.nativeElement.querySelector('#url_input').value = res.url
 
         }, err => {
            
@@ -71,10 +76,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
       }
       else
       {
+        // sin sesion
         this._urlService.convertUrl(object).subscribe(res => {
 
-            this.toaster.success(`su url es ${res.url}`, 'Éxito!');
+            this.toaster.success(`Su url ha sido transformada`, 'Éxito!');
             this.isLoading = false
+            this._ele.nativeElement.querySelector('#url_input').value = res.url
+            
         }, err => { 
           err = err.json()
           this.toaster.error(`${err.message}`,'Error!')
@@ -111,6 +119,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   onSubmit(user: User)
   {
 
+    // función para el loggueo
     this.isLoading = true
 
     this._userService.login(user).subscribe( res => {
@@ -123,8 +132,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.initForm()
       $('#modal_login').modal('hide')
       this.isLoading = false
-
+      
       this.toaster.success(`Ha iniciado sesión correctamente`,'Éxito!')
+
+      setTimeout(() => {
+
+        this._router.navigate(['/user'])
+      
+      },500)
+
 
     }, err => {
       err = err.json()
@@ -136,6 +152,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   onSubmitRegistrar(user: User)
   {
+
+    // función para el registro
 
     this.isLoading = true
 
@@ -149,8 +167,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this._userService.updateAccess(true)
       this.initFormRegistrar()
       this.isLoading = false
-
       this.toaster.success(`Se ha registrado correctamente`,'Éxito!')
+      
+      setTimeout(() => {
+
+        this._router.navigate(['/user'])
+      
+      },500)
+
 
     }, err => {
       err = err.json()

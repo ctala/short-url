@@ -31,7 +31,7 @@
 				</div>
 				  <div class="card-body">
 				    <p class="card-text">¡Acortamos tus urls en cuestión de segundos!</p>
-				    <a href="#" class="btn btn-primary">Go somewhere</a>
+				    <button type="button" class="btn btn-primary">Go somewhere</button>
 				  </div>
 			</div>
 		</div>
@@ -42,7 +42,7 @@
 				</div>
 				  <div class="card-body">
 				    <p class="card-text">Crecemos exponencialmente cada mes y además manejamos un gran flujo de peticiones de usuarios usando nuestra plataforma</p>
-				    <a href="#" class="btn btn-primary">Go somewhere</a>
+				    <button type="button" class="btn btn-primary">Go somewhere</button>
 				  </div>
 			</div>
 		</div>
@@ -53,7 +53,12 @@
 				</div>
 				  <div class="card-body">
 				    <p class="card-text">Puedes Registrar una cuenta y llevar un registro de todas las url que has convertido</p>
-				    <a href="#modal_registrar" data-toggle="modal" class="btn btn-primary">Registrate Aquí</a>
+				    <ng-container *ngIf="!identity">
+				    	<a href="#modal_registrar" data-toggle="modal" class="btn btn-primary">Registrate Aquí</a>
+				    </ng-container>
+				    <ng-container *ngIf="identity">
+				    	<a [routerLink]="['/user']" class="btn btn-primary" routerLinkActive="active">Mis Registros</a>
+				    </ng-container>
 				  </div>
 			</div>
 		</div>

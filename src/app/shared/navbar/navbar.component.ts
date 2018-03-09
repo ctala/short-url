@@ -50,7 +50,11 @@ export class NavbarComponent implements OnInit {
     e.preventDefault()
     localStorage.clear()
     this.access = false
-    this._router.navigate(['/home'])
     this.toaster.success('Ha cerrado sesión correctamente','Exito!')
+    setTimeout(() => {
+
+      this._router.navigate(['/home'])
+      
+    },500)
   }
 }
