@@ -6,6 +6,7 @@ export class AuthService {
 
   constructor(private router: Router) { }
 
+  // Guard de autentificaión
   canActivate()
   {
   	const identity = localStorage.getItem('token')

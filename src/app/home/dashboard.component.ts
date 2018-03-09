@@ -28,8 +28,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   public errors : any
   public isLoading: Boolean = false
 
-  constructor(public toaster : ToastsManager,
-              private _urlService: UrlService, 
+  constructor(public toaster : ToastsManager, // toaster de avisos
+              private _urlService: UrlService, // servicio de url
               private _ele : ElementRef, 
               vcr: ViewContainerRef, 
               private _fb: FormBuilder,
@@ -43,7 +43,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.identity = JSON.parse(localStorage.getItem('identity'))
+    // variables que se guarda en el localStorage si el user esta loggueado
+
+    this.identity = JSON.parse(localStorage.getItem('identity')) 
   }
 
   public transFormUrl()
@@ -99,7 +101,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   	}
   }
 
-  
+
 
   public initForm(){
     this.form = this._fb.group({
@@ -189,7 +191,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(){
   	this.componentDestroy.next(true);
-	this.componentDestroy.complete();
+	  this.componentDestroy.complete();
   }
 
 }

@@ -11,6 +11,9 @@ export const AppRoutes: Routes = [
 },{
 	path: '',
     component: LayoutComponent,
+
+    // rutas del layout
+    
     children: [
     {
     	path: '',

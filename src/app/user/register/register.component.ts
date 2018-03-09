@@ -68,7 +68,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
     else
     {
-      
+       // si esta limpio el input de busqueda el array de registros se vuelve a igualar al de respaldo
       this.registers = this.registersBackup
     }
       
@@ -96,6 +96,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   public convertUrl()
   {
+    // convertir url
+    
     const url = this._ele.nativeElement.querySelector('#url_input').value
 
     if(url)
@@ -130,12 +132,14 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   public showDivHide()
   {
+    // mostrar sección de transformar url
     $('#url_input').val('')
     $('#div_oculto').show('slow/400/fast')
     $('#div_datos').hide('slow/400/fast')
   }
 
   public showDataDiv() {
+    // mostrar sección de datos
     $('#div_oculto').hide('slow/400/fast')
     $('#div_datos').show('slow/400/fast')
     $('#parrafo_url').hide()
