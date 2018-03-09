@@ -1,0 +1,21 @@
+<!-- Nav tabs -->
+<div class="row no-gutters">
+	<div class="col-md-12 col-sm-12">
+		<div class="card">
+			<div class="card-header">
+				<ul class="nav nav-tabs" role="tablist">
+				  <li class="nav-item">
+				    <a class="nav-link active" data-toggle="tab" [routerLink]="['/user']" routerLinkActive="active">Registros</a>
+				  </li>
+				</ul>	
+			</div>
+			<div class="card-body">
+				<div class="tab-content">
+					<router-outlet></router-outlet>
+				</div>	
+			</div>
+		</div>
+		
+	</div>
+</div>
+

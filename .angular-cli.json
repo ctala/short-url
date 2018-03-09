@@ -19,9 +19,20 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.css",
+        "dataTables.bootstrap.css",
+        "animated.css",
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/ng2-toastr/bundles/ng2-toastr.min.js",
+        "jquery.dataTables.js",
+        "dataTables.bootstrap.js",
+        "dataTables.responsive.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

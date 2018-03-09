@@ -1,0 +1,139 @@
+<div class="containter">
+	<div class="row no-gutters presentacion">
+		<div class="col-md-12 col-sm-12 separacion-top">
+			<h3 class="text-center animated slideInLeft">
+				<span class="subrayado_blanco">¡Bienvenido a Short Url!</span>
+			</h3>
+			<h4 class="text-center animated slideInLeft">
+				<span class="subrayado_blanco">Por favor introduzca su url para convertirla</span>
+			</h4>
+			<br/>
+			<div class="row no-gutters">
+				<div class="offset-sm-4 offset-md-4 col-sm-4 col-md-4">
+					<input type="text" class="form-control" placeholder="Introduzca su Url" id="url_input">
+				</div>
+			</div>
+
+			<br/>
+			<div class="row no-gutters animated slideInUp">
+				<div class="offset-sm-5 offset-md-5 col-sm-2 col-md-2">
+					<button type="button" class="btn btn-outline-danger btn-block" (click)="transFormUrl()">Enviar&nbsp;<i class="fa fa-send"></i></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row no-gutters separacion-secciones">
+		<div class="offset-sm-2 offset-md-2 col-sm-3 col-md-3">
+				<div class="card" style="width: 18rem;">
+				<div class="card-header text-center cabeceras_informacion">
+					<h5 class="card-title"><i class="fa fa-bolt fa-3x"></i></h5>
+				</div>
+				  <div class="card-body">
+				    <p class="card-text">¡Acortamos tus urls en cuestión de segundos!</p>
+				    <a href="#" class="btn btn-primary">Go somewhere</a>
+				  </div>
+			</div>
+		</div>
+		<div class="col-sm-3 col-md-3">
+			<div class="card" style="width: 18rem;">
+				<div class="card-header text-center cabeceras_informacion">
+					<h5 class="card-title"><i class="fa fa-area-chart fa-3x"></i></h5>
+				</div>
+				  <div class="card-body">
+				    <p class="card-text">Crecemos exponencialmente cada mes y además manejamos un gran flujo de peticiones de usuarios usando nuestra plataforma</p>
+				    <a href="#" class="btn btn-primary">Go somewhere</a>
+				  </div>
+			</div>
+		</div>
+		<div class="col-sm-3 col-md-3">
+			<div class="card" style="width: 18rem;">
+				<div class="card-header text-center cabeceras_informacion">
+					<h5 class="card-title"><i class="fa fa-users fa-3x"></i></h5>
+				</div>
+				  <div class="card-body">
+				    <p class="card-text">Puedes Registrar una cuenta y llevar un registro de todas las url que has convertido</p>
+				    <a href="#modal_registrar" data-toggle="modal" class="btn btn-primary">Registrate Aquí</a>
+				  </div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="modal_login" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modalHeader">
+                <h4 class="modal-title">Iniciar Sesión&nbsp;<i class="fa fa-users"></i></h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <form [formGroup]="form" class="" (ngSubmit)="onSubmit(form.value)">
+	            <div class="modal-body">
+	            	<div class="form-group row no-gutters">
+	            		<label for="usuario" class="control-label col-md-2 col-sm-2 offset-md-2 offset-sm-2">Usuario</label>
+	            		<div class="col-md-4 col-sm-7">
+	            			<input type="text" id="usuario" name="usuario" required="" class="form-control" formControlName="usuario">
+	            		</div>
+	            	</div>
+	            	<div class="form-group row no-gutters">
+	            		<label for="password" class="control-label col-md-2 col-sm-2 offset-sm-2 offset-md-2">Password</label>
+	            		<div class="col-md-4 col-sm-7">
+	            			<input type="password" id="password" name="password" required="" class="form-control" formControlName="password">
+	            		</div>
+	            	</div>
+	            </div><!-- fin modal-body -->
+	            <div class="modal-footer">
+	                <button type="submit" class="btn btn-success" [disabled]="!form.valid">Entrar</button>
+	                <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+	            </div>
+            </form>
+        </div><!-- fin modal-content -->
+    </div><!-- fin modal-dialog -->
+</div> <!-- fin modal -->
+<div id="modal_registrar" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modalHeader">
+                <h4 class="modal-title">Registro de Usuario&nbsp;<i class="fa fa-user"></i></h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <form [formGroup]="formRegistrar" class="" (ngSubmit)="onSubmitRegistrar(formRegistrar.value)">
+	            <div class="modal-body">
+	            	<div class="form-group row no-gutters">
+	            		<label for="nombre" class="control-label col-md-2 col-sm-2 offset-md-3 offset-sm-3">Nombre</label>
+	            		<div class="col-md-4 col-sm-7">
+	            			<input type="text" id="nombre" name="nombre" required="" class="form-control" formControlName="nombre">
+	            		</div>
+	            	</div>
+	            	<div class="form-group row no-gutters">
+	            		<label for="apellido" class="control-label col-md-2 col-sm-2 offset-md-3 offset-sm-3">Apellido</label>
+	            		<div class="col-md-4 col-sm-7">
+	            			<input type="text" id="apellido" name="apellido" required="" class="form-control" formControlName="apellido">
+	            		</div>
+	            	</div>
+	            	<div class="form-group row no-gutters">
+	            		<label for="usuario" class="control-label col-md-2 col-sm-2 offset-md-3 offset-sm-3">Usuario</label>
+	            		<div class="col-md-4 col-sm-7">
+	            			<input type="text" id="usuario" name="usuario" required="" class="form-control" formControlName="usuario">
+	            		</div>
+	            	</div>
+	            	<div class="form-group row no-gutters">
+	            		<label for="password" class="control-label col-md-2 col-sm-2 offset-sm-3 offset-md-3">Password</label>
+	            		<div class="col-md-4 col-sm-7">
+	            			<input type="password" id="password" name="password" required="" class="form-control" formControlName="password">
+	            		</div>
+	            	</div>
+	            </div><!-- fin modal-body -->
+	            <div class="modal-footer">
+	                <button type="submit" class="btn btn-pink" [disabled]="!formRegistrar.valid">Registrar</button>
+	                <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+	            </div>
+            </form>
+        </div><!-- fin modal-content -->
+    </div><!-- fin modal-dialog -->
+</div> <!-- fin modal -->
+
+<br/><br/><br/><br/>
+<div class="my-container">
+    <ngx-loading [show]="isLoading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>

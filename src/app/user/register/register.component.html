@@ -1,0 +1,85 @@
+<div class="tab-pane animated slideInLeft">
+	<br/>
+	<div class="row no-gutters" id="div_datos">
+		<div class="col-sm-12 col-md-12">
+			
+			<h3 class="text-center">
+				Urls Acortadas
+				<button class="btn btn-success pull-right" (click)="showDivHide()">Convertir Url&nbsp;<i class="fa fa-plus"></i></button>
+			</h3>
+			<br/>
+			<div class="offset-sm-9 offset-md-9 col-sm-3 col-md-3">
+				<input type="text" class="form-control" placeholder="filtrar registros..." (keyup)="filterRegisters($event)">
+			</div>
+			<br/>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th class="text-center">#</th>
+						<th class="text-center">Url Larga</th>
+						<th class="text-center">Corta Url</th>
+						<th class="text-center">Fecha de Creación</th>
+						<th class="text-center">Eliminar</th>
+					</tr>
+				</thead>
+				<tbody class="text-center">
+					<tr *ngFor="let regi of registers | paginate: { itemsPerPage: 5, currentPage: p }  let _id = index;">
+						<td>{{( _id + 1 )}}</td>
+						<td>{{ regi.original_url }}</td>
+						<td>{{ regi.short_url }}</td>
+						<td>{{ regi.createdAt | date : 'dd-MM-yyyy' }}</td>
+						<td>
+							<button class="btn btn-outline-danger btn-xs" (click)="deleteRegister(regi)">
+								<i class="fa fa-trash"></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<br />
+			<div class="pull-right">
+				<pagination-controls (pageChange)="p = $event"
+					previousLabel="Anterior"
+                    nextLabel="Siguiente"
+				></pagination-controls>
+			</div>
+		</div>
+	</div>
+	<div id="div_oculto" style="display: none">
+		<div class="row no-gutters">
+			<div class="col-md-12 col-sm-12">
+				<div class="text-center">
+					<h3 class="text-center">
+						Introduce tu url&nbsp;<i class="fa fa-cloud-upload"></i>
+						<button class="btn btn-pink pull-right" (click)="showDataDiv()">
+							Ver Datos&nbsp;<i class="fa fa-arrow-up"></i>
+						</button>
+					</h3>
+				</div>
+			</div>
+		</div>
+		<div class="row no-gutters">
+			<div class="offset-sm-4 offset-md-4 col-md-4 col-sm-4">
+				<input type="text" class="form-control" id="url_input" placeholder="Url...">
+			</div>
+		</div>
+		<br/>
+		<div class="row no-gutters">
+			<div class="offset-sm-4 offset-md-4 col-md-4 col-sm-4">
+				<button class="btn btn-primary btn-block" (click)="convertUrl()">
+					Convertir...
+				</button>
+			</div>
+		</div>
+		<br/>
+		<div class="row no-gutters">
+			<div class="col-md-12 col-sm-12">
+				<p class="alert alert-info text-center" id="parrafo_url" style="display: none"></p>
+			</div>
+		</div>
+		<br/>
+	</div>
+</div>
+<div class="my-container">
+    <ngx-loading [show]="isLoading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+</div>
